@@ -1,15 +1,15 @@
 <template>
   <transition name="fade" appear>
-    <v-container class="fill-height justify-center flex-column">
+    <v-container class="d-flex fill-height justify-xl-space-around flex-xl-row">
       <v-row align="center"
         ><v-col>
           <img src="../assets/anvilguard.png" />
           <h1 class="display-2 font-weight-bold mb-6">
             The Anvilguard greets you!
           </h1>
-          <p class="body-1">Grab an ale and stay a while</p>
+          <p class="body-1">Grab an <b>ale</b> and stay a while</p>
         </v-col>
-        <v-col sm="5"><image-slider /></v-col
+        <v-col><image-slider /></v-col
       ></v-row>
     </v-container>
   </transition>
