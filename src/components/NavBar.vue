@@ -53,10 +53,32 @@
     <v-btn class="text-capitalize font-weight-regular" text to="/pvp">
       PVP Highlights
     </v-btn>
+    <v-menu open-on-hover offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="text-capitalize font-weight-regular"
+          text
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Community
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in items3"
+          :key="index"
+          @click="handleClick3(index)"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     <v-spacer />
     <v-btn
       class="text-capitalize font-weight-regular"
-      v-if="$route.name !== 'login' && !user"
+      v-if="!user"
       text
       to="/login"
     >
@@ -88,20 +110,27 @@ export default {
         1: "/organisation",
         2: "/members",
       };
-      console.log(routes[e]);
+      this.$router.push({ path: routes[e], query: {} });
     },
     handleClick2(e) {
       const routes = {
         0: "guildbank",
-        1: "/discord",
       };
       if (routes[e] === "guildbank") {
         window.open(
           "https://docs.google.com/spreadsheets/d/1e4ZP62ybJmjpoWk8mVjgvxoQhOP-ldenVuRQy6-62uY/edit#gid=1895612339"
         );
       } else {
-        console.log(routes[e]);
+        this.$router.push({ path: routes[e], query: {} });
       }
+    },
+    handleClick3(e) {
+      const routes = {
+        0: "/adventures",
+        1: "/priestoftheweek",
+        2: "/discord",
+      };
+      this.$router.push({ path: routes[e], query: {} });
     },
   },
   computed: {
@@ -113,7 +142,12 @@ export default {
       { title: "Organization" },
       { title: "Members" },
     ],
-    items2: [{ title: "Guild bank" }, { title: "Discord" }],
+    items2: [{ title: "Guild bank" }],
+    items3: [
+      { title: "Adventures" },
+      { title: "Priest of the week" },
+      { title: "Discord" },
+    ],
     closeOnClick: true,
   }),
 };
